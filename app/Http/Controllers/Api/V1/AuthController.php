@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreRequest;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Responses\Response;

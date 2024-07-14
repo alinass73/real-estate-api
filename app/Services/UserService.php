@@ -16,17 +16,15 @@ class UserService
             'name'=>$request['name'],
             'email'=>$request['email'],
             'password'=>bcrypt($request['password']),
-            'role_id'=>3
         ]);
         $message='User Created Successfully';
         $user['token']= $user->createToken("token")->plainTextToken;
-        $user->sendEmailVerificationNotification();
         return ['user'=>$user,'message'=>$message];
     }
     
     public function login($request)
     {
-         $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
         if(!is_null($user))
         {
             if(!Auth::attempt($request->only(['email','password']))){
