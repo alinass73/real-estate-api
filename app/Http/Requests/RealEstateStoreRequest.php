@@ -32,6 +32,8 @@ class RealEstateStoreRequest extends FormRequest
             'area'=>['required','numeric'],
             'floor'=>['required','integer'],
             'parking'=>['required','integer'],
+            'images' => ['required','array'],
+            'images.*' => ['image','mimes:jpeg,png','max:2048']
         ];
     }
 }

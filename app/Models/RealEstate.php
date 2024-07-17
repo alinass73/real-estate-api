@@ -13,6 +13,9 @@ class RealEstate extends Model
     
     protected $guarded =['id'];
 
-    
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 
 }

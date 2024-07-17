@@ -23,6 +23,7 @@ class RealEstateResource extends JsonResource
             'area'=>$this->area,
             'floor'=>$this->floor,
             'parking'=>$this->parking,
+            'images'=>$this->images,
         ];
     }
 }
