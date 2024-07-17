@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\RealEstateController;
 use App\Models\RealEstate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Message;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,3 +34,11 @@ Route::prefix('/real-estate')->group(function(){
     Route::delete('/{real_estate}/delete',[RealEstateController::class,'destroy'])->middleware(['auth:sanctum','admin']);
     Route::get('/{real_estate}',[RealEstateController::class,'show'])->middleware(['auth:sanctum']);
 });
+
+Route::prefix('/message')->group(function(){
+    Route::get('/',[MessageController::class,'index'])->middleware(['auth:sanctum']);
+    Route::post('/store',[MessageController::class,'store'])->middleware(['auth:sanctum',]);
+    Route::delete('/{message}/delete',[MessageController::class,'destroy'])->middleware(['auth:sanctum',]);
+    Route::get('/{message}',[MessageController::class,'show'])->middleware(['auth:sanctum']);
+});
+
