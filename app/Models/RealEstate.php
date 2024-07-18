@@ -18,4 +18,9 @@ class RealEstate extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function schedule()
+    {
+        return $this->hasMany(ScheduleVisit::class);
+    }
+
 }

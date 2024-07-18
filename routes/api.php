@@ -3,10 +3,13 @@
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\RealEstateController;
+use App\Http\Controllers\ScheduleVisitController;
 use App\Models\RealEstate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Message;
+use App\Models\ScheduleVisit;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,5 +43,12 @@ Route::prefix('/message')->group(function(){
     Route::post('/store',[MessageController::class,'store'])->middleware(['auth:sanctum',]);
     Route::delete('/{message}/delete',[MessageController::class,'destroy'])->middleware(['auth:sanctum',]);
     Route::get('/{message}',[MessageController::class,'show'])->middleware(['auth:sanctum']);
+});
+
+Route::prefix('/schedule')->middleware(['auth:sanctum'])->group(function(){
+    Route::get('/',[ScheduleVisitController::class,'index']);
+    Route::get('/my-schedule',[ScheduleVisitController::class,'indexOfMine']);
+    Route::post('/store',[ScheduleVisitController::class,'store']);
+    Route::patch('/{schedule}/update',[ScheduleVisitController::class,'update']);
 });
 

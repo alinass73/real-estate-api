@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Validator::extend('minute', function ($attribute, $value, $parameters) {
+            $minutes = (int) date('i', strtotime($value));
+            return in_array($minutes, [0, 30]);
+        });
     }
 }
